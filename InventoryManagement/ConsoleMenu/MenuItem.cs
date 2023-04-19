@@ -72,6 +72,14 @@ public class MenuItem
         }
     }
 
+    public void Add(MenuItem[] menuItems)
+    {
+        foreach (var menuItem in menuItems)
+        {
+            Add(menuItem);
+        }
+    }
+    
     public void Add(MenuItem menuItem)
     {
         menuItem.Parent = this;

@@ -16,9 +16,13 @@ public class StartMenu : Menu
         return new[]
         {
             new MenuItem(GetUserInputItems())
-                { NameEnum = TextEnum.MenuTitleLogin },
+            {
+                NameEnum = TextEnum.MenuTitleLogin
+            },
             new MenuItem(GetLanguageItems())
-                { NameEnum = TextEnum.MenuTitleLanguages }
+            {
+                NameEnum = TextEnum.MenuTitleLanguages
+            }
         };
     }
 

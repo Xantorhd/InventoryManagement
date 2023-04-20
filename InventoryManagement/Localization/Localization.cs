@@ -20,6 +20,7 @@ public class Localization
         {
             _localizations[languageCode] = new Dictionary<string, string>();
         }
+        
         _localizations[languageCode][key] = value;
     }
 
@@ -29,6 +30,7 @@ public class Localization
         {
             return _localizations[languageCode][key];
         }
+        
         return $"[{key}]";
     }
 }

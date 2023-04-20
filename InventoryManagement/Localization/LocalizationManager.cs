@@ -32,6 +32,13 @@ public static class LocalizationManager
             Localization.AddLocalization(de.Code, TextEnum.ItemQuantity, "Menge");
             Localization.AddLocalization(de.Code, TextEnum.ItemPrice, "Preis");
             
+            Localization.AddLocalization(de.Code, TextEnum.PrintHelp, "Hilfe");
+            Localization.AddLocalization(de.Code, TextEnum.PrintHelpRow1, "←↑↓→ zur Navigation benutzen.");
+            Localization.AddLocalization(de.Code, TextEnum.PrintHelpRow2, "Esc um zum Hauptmenü zurückzukehren.");
+            Localization.AddLocalization(de.Code, TextEnum.PrintHelpRow3, "Backspace um zum übergeordneten Menü zurückzukehren.");
+            Localization.AddLocalization(de.Code, TextEnum.PrintHelpRow4, "Del um den Log zu leeren.");
+            Localization.AddLocalization(de.Code, TextEnum.DeleteUser, "Nutzer löschen");
+            
             Localization.AddLocalization(de.Code, TextEnum.ErrorInvalidPassword, "Ungültiges Passwort");
 
             var en = GetLanguageByCode("en");
@@ -51,6 +58,13 @@ public static class LocalizationManager
             Localization.AddLocalization(en.Code, TextEnum.ItemName, "Name");
             Localization.AddLocalization(en.Code, TextEnum.ItemQuantity, "Quantity");
             Localization.AddLocalization(en.Code, TextEnum.ItemPrice, "Price");
+            
+            Localization.AddLocalization(en.Code, TextEnum.PrintHelp, "Help");
+            Localization.AddLocalization(en.Code, TextEnum.PrintHelpRow1, "Use ←↑↓→ for navigation.");
+            Localization.AddLocalization(en.Code, TextEnum.PrintHelpRow2, "Press Esc for return to main menu.");
+            Localization.AddLocalization(en.Code, TextEnum.PrintHelpRow3, "Press Backspace for return to parent menu.");
+            Localization.AddLocalization(en.Code, TextEnum.PrintHelpRow4, "Press Del for clear log.");
+            Localization.AddLocalization(en.Code, TextEnum.DeleteUser, "Delete user");
             
             Localization.AddLocalization(en.Code, TextEnum.ErrorInvalidPassword, "Invalid password");
             
@@ -96,6 +110,7 @@ public static class LocalizationManager
             {
                 return $"[{key}]";
             }
+            
             return Localization.GetText(_currentLanguage.Code, key);
         }
 

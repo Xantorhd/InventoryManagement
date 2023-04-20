@@ -19,16 +19,49 @@ public class MainMenu : Menu
             new MenuItem(new []
                 {
                     new MenuItem(ShowInventoryItems)
-                        { NameEnum = TextEnum.OptionShowInventoryItems },
+                    {
+                        NameEnum = TextEnum.OptionShowInventoryItems
+                    },
                     new MenuItem(ShowCreateItem)
-                        { NameEnum = TextEnum.OptionCreateInventoryItem }
+                    {
+                        NameEnum = TextEnum.OptionCreateInventoryItem
+                    }
                 })
-                { NameEnum = TextEnum.MenuTitleInventory },
+            {
+                NameEnum = TextEnum.MenuTitleInventory
+            },
+            new MenuItem(GetUserItems())
+            {
+                NameEnum = TextEnum.MenuTitleUsers
+            },
             new MenuItem(GetLanguageItems())
-                { NameEnum = TextEnum.MenuTitleLanguages }
+            {
+                NameEnum = TextEnum.MenuTitleLanguages
+            },
+            new MenuItem(MenuManager.PrintHelp)
+            {
+                NameEnum = TextEnum.PrintHelp
+            }
         };
     }
 
+    private static MenuItem[] GetUserItems()
+    {
+        return Program.UserManager.GetUsernames().Select(username =>
+            new MenuItem(username, new[]
+            {
+                new MenuItem(DeleteUser)
+                {
+                    NameEnum = TextEnum.DeleteUser
+                }
+            })).ToArray();
+    }
+
+    private static void DeleteUser()
+    {
+        
+    }
+    
     private static void ShowInventoryItems()
     {
         if (MenuManager.GetMenu().Selected.Items.Count > 0)

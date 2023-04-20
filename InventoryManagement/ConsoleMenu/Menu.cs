@@ -431,8 +431,20 @@ public class Menu
             new MenuItem(language.Name, SwitchLanguage)).ToArray();
     }
 
-    protected static void SwitchLanguage()
+    private static void SwitchLanguage()
     {
         LocalizationManager.SetCurrentLanguage(LocalizationManager.GetLanguageByName(MenuManager.GetMenu().Selected.GetName()));
+
+        MenuManager.PrintHelp();
+    }
+
+    public void PrintHelp()
+    {
+        Log.Clear();
+        
+        WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow1));
+        WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow2));
+        WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow3));
+        WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow4));
     }
 }

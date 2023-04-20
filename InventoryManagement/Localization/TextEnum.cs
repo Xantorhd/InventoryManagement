@@ -13,10 +13,19 @@ public enum TextEnum
     OptionCreateInventoryItem,
     
     PromtPassword,
-    
+    PromtNewPassword,
+
     ItemName,
     ItemQuantity,
     ItemPrice,
+    
+    PrintHelp,
+    PrintHelpRow1,
+    PrintHelpRow2,
+    PrintHelpRow3,
+    PrintHelpRow4,
+    DeleteUser,
+    UpdatePassword,
     
     ErrorInvalidPassword
 }

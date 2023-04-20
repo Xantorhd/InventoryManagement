@@ -1,4 +1,5 @@
 using System.Text;
+using InventoryManagement.Localization;
 
 namespace InventoryManagement.ConsoleMenu;
 
@@ -422,5 +423,16 @@ public class Menu
     {
         Log.Add(str);
         Refresh();
+    }
+    
+    protected static MenuItem[] GetLanguageItems()
+    {
+        return LocalizationManager.GetAvailableLanguages().Select(language =>
+            new MenuItem(language.Name, SwitchLanguage)).ToArray();
+    }
+
+    protected static void SwitchLanguage()
+    {
+        LocalizationManager.SetCurrentLanguage(LocalizationManager.GetLanguageByName(MenuManager.GetMenu().Selected.GetName()));
     }
 }

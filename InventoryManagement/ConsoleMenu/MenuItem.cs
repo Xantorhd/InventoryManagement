@@ -22,6 +22,14 @@ public class MenuItem
 
     public int MaxColumns { get; set; }
 
+    public MenuItem(MenuItem[] items, int maxColumns = 0) : this("", items, maxColumns)
+    {
+    }
+    
+    public MenuItem(Action? action, int maxColumns = 0) : this("", action, maxColumns)
+    {
+    }
+    
     public MenuItem(string name, Action? action, int maxColumns = 0) : this(name, action, Array.Empty<MenuItem>(), maxColumns)
     {
     }

@@ -19,8 +19,18 @@ public static class LocalizationManager
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleMain, "Hauptmenü");
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleLogin, "Anmeldung");
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleLanguages, "Sprachen");
+            Localization.AddLocalization(de.Code, TextEnum.MenuTitleInventory, "Inventar");
+            Localization.AddLocalization(de.Code, TextEnum.MenuTitleUsers, "Benutzer");
+            Localization.AddLocalization(de.Code, TextEnum.MenuTitleHelp, "Hilfe");
+            
+            Localization.AddLocalization(de.Code, TextEnum.OptionShowInventoryItems, "Inventar anzeigen");
+            Localization.AddLocalization(de.Code, TextEnum.OptionCreateInventoryItem, "Item hinzufügen");
             
             Localization.AddLocalization(de.Code, TextEnum.PromtPassword, "Passwort");
+            
+            Localization.AddLocalization(de.Code, TextEnum.ItemName, "Name");
+            Localization.AddLocalization(de.Code, TextEnum.ItemQuantity, "Menge");
+            Localization.AddLocalization(de.Code, TextEnum.ItemPrice, "Preis");
             
             Localization.AddLocalization(de.Code, TextEnum.ErrorInvalidPassword, "Ungültiges Passwort");
 
@@ -29,8 +39,18 @@ public static class LocalizationManager
             Localization.AddLocalization(en.Code, TextEnum.MenuTitleMain, "Main");
             Localization.AddLocalization(en.Code, TextEnum.MenuTitleLogin, "Login");
             Localization.AddLocalization(en.Code, TextEnum.MenuTitleLanguages, "Languages");
+            Localization.AddLocalization(en.Code, TextEnum.MenuTitleInventory, "Inventory");
+            Localization.AddLocalization(en.Code, TextEnum.MenuTitleUsers, "Users");
+            Localization.AddLocalization(en.Code, TextEnum.MenuTitleHelp, "Help");
+            
+            Localization.AddLocalization(en.Code, TextEnum.OptionShowInventoryItems, "Show inventory");
+            Localization.AddLocalization(en.Code, TextEnum.OptionCreateInventoryItem, "Add item");
             
             Localization.AddLocalization(en.Code, TextEnum.PromtPassword, "Password");
+            
+            Localization.AddLocalization(en.Code, TextEnum.ItemName, "Name");
+            Localization.AddLocalization(en.Code, TextEnum.ItemQuantity, "Quantity");
+            Localization.AddLocalization(en.Code, TextEnum.ItemPrice, "Price");
             
             Localization.AddLocalization(en.Code, TextEnum.ErrorInvalidPassword, "Invalid password");
             

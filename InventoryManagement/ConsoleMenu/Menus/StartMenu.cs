@@ -1,19 +1,24 @@
 using InventoryManagement.Localization;
-using InventoryManagement.Users;
 
 namespace InventoryManagement.ConsoleMenu.Menus;
 
 public class StartMenu : Menu
 {
-    public StartMenu() : base(new MenuItem(LocalizationManager.GetText(TextEnum.MenuTitleMain), GetItems()){NameEnum = TextEnum.MenuTitleMain})
+    public StartMenu() : base(new MenuItem(GetItems())
+    {
+        NameEnum = TextEnum.MenuTitleMain,
+        MaxColumns = 1
+    })
     { }
 
     private static MenuItem[] GetItems()
     {
         return new[]
         {
-            new MenuItem(LocalizationManager.GetText(TextEnum.MenuTitleLogin), GetUserInputItems()){NameEnum = TextEnum.MenuTitleLogin},
-            new MenuItem(LocalizationManager.GetText(TextEnum.MenuTitleLanguages), GetLanguageItems()){NameEnum = TextEnum.MenuTitleLanguages}
+            new MenuItem(GetUserInputItems())
+                { NameEnum = TextEnum.MenuTitleLogin },
+            new MenuItem(GetLanguageItems())
+                { NameEnum = TextEnum.MenuTitleLanguages }
         };
     }
 
@@ -27,22 +32,11 @@ public class StartMenu : Menu
     {
         if (Program.UserManager.CheckPassword(MenuManager.GetMenu().Selected.GetName(), password))
         {
-            //MenuManager.GetMenu().WriteLine("Login success");
+            MenuManager.LoginSuccess();
         }
         else
         {
-            //MenuManager.GetMenu().WriteLine("No Login success");
+            MenuManager.GetMenu().WriteLine(LocalizationManager.GetText(TextEnum.ErrorInvalidPassword));
         }
-    }
-
-    private static MenuItem[] GetLanguageItems()
-    {
-        return LocalizationManager.GetAvailableLanguages().Select(language =>
-            new MenuItem(language.Name, SwitchLanguage)).ToArray();
-    }
-
-    private static void SwitchLanguage()
-    {
-        LocalizationManager.SetCurrentLanguage(LocalizationManager.GetLanguageByName(MenuManager.GetMenu().Selected.GetName()));
     }
 }

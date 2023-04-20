@@ -36,7 +36,7 @@ public class InventoryManager
             {
                 Name = parts[0],
                 Quantity = int.Parse(parts[1]),
-                Price = decimal.Parse(parts[2])
+                Price = int.Parse(parts[2])
             };
             inventory.AddItem(item);
         }

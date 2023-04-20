@@ -13,6 +13,15 @@ public static class MenuManager
         PrintInfo();
     }
 
+    public static void LoginSuccess()
+    {
+        _menu.Close();
+        
+        _menu = new MainMenu();
+        
+        _menu.Begin();
+    }
+    
     public static Menu GetMenu()
     {
         return _menu;

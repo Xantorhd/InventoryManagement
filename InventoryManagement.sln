@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement", "InventoryManagement\InventoryManagement.csproj", "{004D99F9-050E-4984-9272-07D185C8F6DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagementTests", "InventoryManagementTests\InventoryManagementTests.csproj", "{904AF6EA-98BA-4F18-A847-BB5C9ACE1CB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{004D99F9-050E-4984-9272-07D185C8F6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{004D99F9-050E-4984-9272-07D185C8F6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{004D99F9-050E-4984-9272-07D185C8F6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{904AF6EA-98BA-4F18-A847-BB5C9ACE1CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904AF6EA-98BA-4F18-A847-BB5C9ACE1CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904AF6EA-98BA-4F18-A847-BB5C9ACE1CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904AF6EA-98BA-4F18-A847-BB5C9ACE1CB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

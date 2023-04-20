@@ -16,6 +16,23 @@ public class UserRepository : IUserRepository
         File.AppendAllLines(_filePath, new[] { userString });
     }
 
+    public bool RemoveUser(User user)
+    {
+        try
+        {
+            var users = GetUsers();
+            var updatedUsers = users.Where(u => u.Username != user.Username).Select(u => $"{user.Username},{user.Password}");
+            
+            File.WriteAllLines(_filePath, updatedUsers);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
     public List<User> GetUsers()
     {
         var users = new List<User>();

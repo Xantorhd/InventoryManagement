@@ -1,55 +1,26 @@
+using InventoryManagement.Localization;
+
 namespace InventoryManagement.ConsoleMenu;
 
 public class MenuItem
 {
-    public MenuItem Parent { 
-        get;
-        
-        private set; 
-    }
+    public MenuItem Parent { get; private set; }
 
-    public string Name
-    {
-        get;
-    }
+    private string Name { get; }
+    
+    public TextEnum? NameEnum { get; set; }
 
-    public Action? Action
-    {
-        get;
-    }
+    public Action? Action { get; }
 
-    public IReadOnlyList<MenuItem> Items
-    {
-        get;
-    }
+    public IReadOnlyList<MenuItem> Items { get; }
 
-    public object Tag
-    {
-        get; 
-        
-        set;
-    }
+    public object Tag { get; set; }
 
-    public bool ActionOnSelected
-    {
-        get;
-        
-        set;
-    } = false;
+    public bool ActionOnSelected { get; set; } = false;
 
-    public bool ActionIfConfirmed
-    {
-        get;
-        
-        set;
-    } = false;
+    public bool ActionIfConfirmed { get; set; } = false;
 
-    public int MaxColumns
-    {
-        get;
-        
-        set;
-    }
+    public int MaxColumns { get; set; }
 
     public MenuItem(string name, Action? action, int maxColumns = 0) : this(name, action, Array.Empty<MenuItem>(), maxColumns)
     {
@@ -72,6 +43,16 @@ public class MenuItem
         }
     }
 
+    public string GetName()
+    {
+        if (NameEnum != null)
+        {
+            return LocalizationManager.GetText(NameEnum.Value);
+        }
+
+        return Name;
+    }
+    
     public void Add(MenuItem[] menuItems)
     {
         foreach (var menuItem in menuItems)

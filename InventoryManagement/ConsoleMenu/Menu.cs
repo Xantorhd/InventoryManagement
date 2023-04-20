@@ -64,6 +64,22 @@ public class Menu
         }
     }
 
+    public Menu(MenuItem main)
+    {
+        Main = main;
+
+        Current = Main;
+        
+        if (Main.Items.Count > 0)
+        {
+            Selected = Main.Items[0];
+        }
+        else
+        {
+            Selected = Main;
+        }
+    }
+
     // Worker cycle
     public void Begin()
     {
@@ -111,7 +127,7 @@ public class Menu
                 }
                 case ConsoleKey.Enter:
                 {
-                    if (Selected is InputMenuItem)
+                    if (Selected is MenuInputItem)
                     {
                         _inputMode = true;
 
@@ -267,7 +283,7 @@ public class Menu
     {
         if (_inputMode)
         {
-            var inp = Selected as InputMenuItem;
+            var inp = Selected as MenuInputItem;
 
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Green;
@@ -293,7 +309,7 @@ public class Menu
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine(Selected.Name.PadLeft(40));
+            Console.WriteLine(Selected.GetName().PadLeft(40));
             Console.WriteLine();
             Console.WriteLine(ConfirmText.PadLeft(40));
 
@@ -305,13 +321,13 @@ public class Menu
         Console.Clear();
 
         // Drawing nav
-        var nav = Current.Name;
+        var nav = Current.GetName();
         var cur = Current.Parent;
         var cursor = 0;
 
         while (cur != null)
         {
-            nav = cur.Name + " => " + nav;
+            nav = cur.GetName() + " => " + nav;
 
             cur = cur.Parent;
         }
@@ -325,9 +341,9 @@ public class Menu
         {
             var itm = Current.Items[i];
 
-            if (itm.Name.Length > maxWidth)
+            if (itm.GetName().Length > maxWidth)
             {
-                maxWidth = itm.Name.Length;
+                maxWidth = itm.GetName().Length;
             }
         }
 
@@ -353,7 +369,7 @@ public class Menu
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
 
-                var name = itm.Name.PadRight(maxWidth + 2);
+                var name = itm.GetName().PadRight(maxWidth + 2);
 
                 if (name.Length >= System.Console.LargestWindowWidth)
                 {

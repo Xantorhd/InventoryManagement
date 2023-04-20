@@ -4,27 +4,25 @@ namespace InventoryManagement.ConsoleMenu;
 
 public static class MenuManager
 {
-    public static readonly Menu Menu;
+    private static Menu _menu;
 
     static MenuManager()
     {
-        Menu = new Menu
-        (
-            "Main",
-            StartMenu.Get()
-        )
-        {
-            Main = { MaxColumns = 1 }
-        };
+        _menu = new StartMenu();
         
         PrintInfo();
     }
 
-    static void PrintInfo()
+    public static Menu GetMenu()
     {
-        Menu.WriteLine("Use ←↑↓→ for navigation.");
-        Menu.WriteLine("Press Esc for return to main menu.");
-        Menu.WriteLine("Press Backspace for return to parent menu.");
-        Menu.WriteLine("Press Del for clear log.");
+        return _menu;
+    }
+    
+    private static void PrintInfo()
+    {
+        _menu.WriteLine("Use ←↑↓→ for navigation.");
+        _menu.WriteLine("Press Esc for return to main menu.");
+        _menu.WriteLine("Press Backspace for return to parent menu.");
+        _menu.WriteLine("Press Del for clear log.");
     }
 }

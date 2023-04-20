@@ -1,10 +1,10 @@
 namespace InventoryManagement.Inventory;
 
-public class InventoryManagement
+public class InventoryManager
 {
-    private string _filePath;
+    private readonly string _filePath;
 
-    public InventoryManagement(string filePath)
+    public InventoryManager(string filePath)
     {
         _filePath = filePath;
     }

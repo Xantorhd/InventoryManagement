@@ -131,22 +131,7 @@ public class Menu
             {
                 case System.ConsoleKey.Backspace:
                 {
-                    if (Current.Parent != null)
-                    {
-                        foreach (var itm in Current.Parent.Items)
-                        {
-                            if (itm != Current)
-                            {
-                                continue;
-                            }
-                            
-                            Selected = itm;
-
-                            break;
-                        }
-
-                        Current = Current.Parent;
-                    }
+                    GoUp();
 
                     break;
                 }

@@ -30,7 +30,7 @@ public class Menu
     {
         get => _selected;
         
-        private set
+        set
         {
             _selected = value;
 
@@ -300,7 +300,7 @@ public class Menu
     }
 
     // Drawing
-    private void Refresh()
+    public void Refresh()
     {
         if (_inputMode)
         {

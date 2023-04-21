@@ -16,6 +16,7 @@ public class MenuInputItem: MenuItem
     public string Title
     {
         get;
+        set;
     }
 
     public MenuInputItem(string name, string title, Action<string> action) : base(name, null as Action, 0)

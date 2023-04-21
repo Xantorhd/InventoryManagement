@@ -50,7 +50,7 @@ public class MainMenu : Menu
     {
         if (MenuManager.GetMenu().Selected.Items.Count > 0)
         {
-            return;
+            MenuManager.GetMenu().Selected.Items.Clear();
         }
 
         MenuManager.GetMenu().Selected.Add(
@@ -74,23 +74,34 @@ public class MainMenu : Menu
 
     private static void CreateNewUser(string value)
     {
-        /*if (MenuManager.GetMenu().Selected.BackgroundData != null)
+        if (MenuManager.GetMenu().Selected.BackgroundData != null)
         {
             var user = (User)MenuManager.GetMenu().Selected.BackgroundData;
 
             user.Password = value;
 
             Program.UserManager.AddUser(user);
+
+            MenuManager.GetMenu().Selected.BackgroundData = null;
             
             MenuManager.GetMenu().GoUp();
+            
+            AddUserItems();
+            
+            MenuManager.GetMenu().Refresh();
         }
         else
         {
-            MenuManager.GetMenu().WriteLine(value);
-            
-            MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.PromptNewUserPassword);
+            MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.PromptPassword);
+            ((MenuInputItem)MenuManager.GetMenu().Selected).Title =
+                LocalizationManager.GetText(TextEnum.PromptPassword);
             MenuManager.GetMenu().Selected.BackgroundData = new User(value);
-        }*/
+
+            MenuManager.GetMenu().Selected.Parent.Items
+                .RemoveAll(itm => itm.Name != LocalizationManager.GetText(TextEnum.PromptPassword));
+            
+            MenuManager.GetMenu().Refresh();
+        }
     }
     
     private static void DeleteUser()

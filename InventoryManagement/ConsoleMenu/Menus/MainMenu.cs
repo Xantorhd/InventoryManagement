@@ -138,15 +138,31 @@ public class MainMenu : Menu
                     NameEnum = TextEnum.DeleteItem,
                     BackgroundData = item
                 },
-                new MenuItem(LocalizationManager.GetText(TextEnum.ItemName) 
-                             + ": " 
-                             + item.Name, EditItemName),
-                new MenuItem(LocalizationManager.GetText(TextEnum.ItemQuantity) 
-                             + ": " 
-                             + item.Quantity, EditItemQuantity),
-                new MenuItem(LocalizationManager.GetText(TextEnum.ItemPrice) 
-                             + ": " 
-                             + item.Price, EditItemPrice)
+                
+                new MenuInputItem(LocalizationManager.GetText(TextEnum.ItemName)
+                                    + ": "
+                                    + item.Name,
+                                    LocalizationManager.GetText(TextEnum.ItemName),
+                                EditItemName)
+                {
+                    BackgroundData = item
+                },
+                new MenuInputItem(LocalizationManager.GetText(TextEnum.ItemQuantity)
+                                    + ": "
+                                    + item.Quantity,
+                                        LocalizationManager.GetText(TextEnum.ItemQuantity),
+                                EditItemQuantity)
+                {
+                    BackgroundData = item
+                },
+                new MenuInputItem(LocalizationManager.GetText(TextEnum.ItemPrice)
+                                    + ": "
+                                    + item.Price,
+                                        LocalizationManager.GetText(TextEnum.ItemPrice),
+                                EditItemPrice)
+                {
+                    BackgroundData = item
+                }
             });
         }
     }
@@ -171,18 +187,89 @@ public class MainMenu : Menu
         
     }
 
-    private static void EditItemName()
+    private static void EditItemName(string name)
     {
-        MenuManager.GetMenu().WriteLine("Edit Item");
+        var item = (Item)MenuManager.GetMenu().Selected.BackgroundData;
+
+        var oldName = item.Name;
+        
+        item.Name = name;
+
+        var inventory = Program.InventoryManager.LoadInventory();
+        
+        inventory.UpdateItem(item, oldName);
+        
+        Program.InventoryManager.SaveInventory(inventory);
+
+        MenuManager.GetMenu().GoUp();
+        
+        MenuManager.GetMenu().Selected.Name = name;
+
+        MenuManager.GetMenu().Selected.Items.First(itm => itm.GetName().EndsWith(oldName)).Name =
+            LocalizationManager.GetText(TextEnum.ItemName) + ": " + name;
+        
+        MenuManager.GetMenu().Refresh();
     }
 
-    private static void EditItemQuantity()
+    private static void EditItemQuantity(string quantity)
     {
+        int quant;
+
+        if (!int.TryParse(quantity, out quant))
+        {
+            return;
+        }
         
+        var item = (Item)MenuManager.GetMenu().Selected.BackgroundData;
+
+        item.Quantity = quant;
+
+        var inventory = Program.InventoryManager.LoadInventory();
+        
+        inventory.UpdateItem(item, item.Name);
+        
+        Program.InventoryManager.SaveInventory(inventory);
+
+        MenuManager.GetMenu().GoUp();
+        
+        MenuManager.GetMenu().Selected.Name = item.Name;
+
+        var nameIndex = MenuManager.GetMenu().Selected.Items.FindIndex(itm => itm.GetName().EndsWith(item.Name));
+
+        MenuManager.GetMenu().Selected.Items[nameIndex + 1].Name =
+            LocalizationManager.GetText(TextEnum.ItemQuantity) + ": " + quantity;
+
+        MenuManager.GetMenu().Refresh();
     }
 
-    private static void EditItemPrice()
+    private static void EditItemPrice(string price)
     {
+        int pric;
+
+        if (!int.TryParse(price, out pric))
+        {
+            return;
+        }
         
+        var item = (Item)MenuManager.GetMenu().Selected.BackgroundData;
+
+        item.Price = pric;
+
+        var inventory = Program.InventoryManager.LoadInventory();
+        
+        inventory.UpdateItem(item, item.Name);
+        
+        Program.InventoryManager.SaveInventory(inventory);
+
+        MenuManager.GetMenu().GoUp();
+        
+        MenuManager.GetMenu().Selected.Name = item.Name;
+
+        var nameIndex = MenuManager.GetMenu().Selected.Items.FindIndex(itm => itm.GetName().EndsWith(item.Name));
+
+        MenuManager.GetMenu().Selected.Items[nameIndex + 2].Name =
+            LocalizationManager.GetText(TextEnum.ItemPrice) + ": " + pric;
+
+        MenuManager.GetMenu().Refresh();
     }
 }

@@ -19,9 +19,9 @@ public class Inventory
         _items.RemoveAll(itm => itm.Name == item.Name);
     }
 
-    public void UpdateItem(Item item)
+    public void UpdateItem(Item item, string oldName)
     {
-        var index = _items.FindIndex(i => i.Name == item.Name);
+        var index = _items.FindIndex(i => i.Name == oldName);
         
         if (index != -1)
         {

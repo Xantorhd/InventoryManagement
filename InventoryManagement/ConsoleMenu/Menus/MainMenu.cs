@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using InventoryManagement.Inventory;
 using InventoryManagement.Localization;
 using InventoryManagement.Users;
@@ -23,7 +24,8 @@ public class MainMenu : Menu
                     {
                         NameEnum = TextEnum.OptionShowInventoryItems
                     },
-                    new MenuItem(ShowCreateItem)
+                    new MenuInputItem(LocalizationManager.GetText(TextEnum.OptionCreateInventoryItem),
+                        LocalizationManager.GetText(TextEnum.ItemName), CreateItem)
                     {
                         NameEnum = TextEnum.OptionCreateInventoryItem
                     }
@@ -182,9 +184,86 @@ public class MainMenu : Menu
         MenuManager.GetMenu().GoUp();
     }
     
-    private static void ShowCreateItem()
+    private static void CreateItem(string value)
     {
-        
+        if (MenuManager.GetMenu().Selected.Name.Equals(LocalizationManager.GetText(TextEnum.OptionCreateInventoryItem)))
+        {
+            // Name
+
+            var itemBuilder = new ItemBuilder();
+
+            itemBuilder = itemBuilder.WithName(value);
+
+            MenuManager.GetMenu().Selected.BackgroundData = itemBuilder;
+
+            MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.ItemQuantity);
+            ((MenuInputItem)MenuManager.GetMenu().Selected).Title =
+                LocalizationManager.GetText(TextEnum.ItemQuantity);
+            MenuManager.GetMenu().Selected.NameEnum = null;
+
+            MenuManager.GetMenu().Selected.Parent.Items
+                .RemoveAll(itm => itm.Name != LocalizationManager.GetText(TextEnum.ItemQuantity));
+            
+            MenuManager.GetMenu().Refresh();
+        }
+        else if (MenuManager.GetMenu().Selected.Name.Equals(LocalizationManager.GetText(TextEnum.ItemQuantity)))
+        {
+            // Quantity
+
+            var itemBuilder = (ItemBuilder)MenuManager.GetMenu().Selected.BackgroundData;
+
+            var quantity = int.Parse(value);
+
+            itemBuilder = itemBuilder.WithQuantity(quantity);
+
+            MenuManager.GetMenu().Selected.BackgroundData = itemBuilder;
+            
+            MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.ItemPrice);
+            ((MenuInputItem)MenuManager.GetMenu().Selected).Title =
+                LocalizationManager.GetText(TextEnum.ItemPrice);
+            
+            MenuManager.GetMenu().Selected.Parent.Items
+                .RemoveAll(itm => itm.Name != LocalizationManager.GetText(TextEnum.ItemPrice));
+            
+            MenuManager.GetMenu().Refresh();
+        }
+        else if (MenuManager.GetMenu().Selected.Name.Equals(LocalizationManager.GetText(TextEnum.ItemPrice)))
+        {
+            // Price
+
+            var itemBuilder = (ItemBuilder)MenuManager.GetMenu().Selected.BackgroundData;
+
+            var price = int.Parse(value);
+
+            itemBuilder = itemBuilder.WithPrice(price);
+
+            var inventory = Program.InventoryManager.LoadInventory();
+            
+            inventory.AddItem(itemBuilder.Build());
+            
+            Program.InventoryManager.SaveInventory(inventory);
+
+            MenuManager.GetMenu().Selected.BackgroundData = null;
+
+            MenuManager.GetMenu().Selected.Parent.Items.Clear();
+
+            MenuManager.GetMenu().GoUp();
+
+            MenuManager.GetMenu().Selected.Add(new[]
+            {
+                new MenuItem(ShowInventoryItems)
+                {
+                    NameEnum = TextEnum.OptionShowInventoryItems
+                },
+                new MenuInputItem(LocalizationManager.GetText(TextEnum.OptionCreateInventoryItem),
+                    LocalizationManager.GetText(TextEnum.ItemName), CreateItem)
+                {
+                    NameEnum = TextEnum.OptionCreateInventoryItem
+                }
+            });
+            
+            MenuManager.GetMenu().Refresh();
+        }
     }
 
     private static void EditItemName(string name)

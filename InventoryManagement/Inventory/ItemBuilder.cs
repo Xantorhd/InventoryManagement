@@ -3,7 +3,9 @@ namespace InventoryManagement.Inventory;
 public class ItemBuilder
 {
     private string _name;
+    
     private int _quantity;
+    
     private int _price;
 
     public ItemBuilder WithName(string name)

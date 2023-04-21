@@ -23,12 +23,14 @@ public class InventoryManager
     public Inventory LoadInventory()
     {
         var inventory = new Inventory();
+        
         if (!File.Exists(_filePath))
         {
             return inventory;
         }
 
         var lines = File.ReadAllLines(_filePath);
+        
         foreach (var line in lines)
         {
             var parts = line.Split(',');
@@ -38,6 +40,7 @@ public class InventoryManager
                 Quantity = int.Parse(parts[1]),
                 Price = int.Parse(parts[2])
             };
+            
             inventory.AddItem(item);
         }
 

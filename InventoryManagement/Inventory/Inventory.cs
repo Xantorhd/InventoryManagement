@@ -22,6 +22,7 @@ public class Inventory
     public void UpdateItem(Item item)
     {
         var index = _items.FindIndex(i => i.Name == item.Name);
+        
         if (index != -1)
         {
             _items[index] = item;

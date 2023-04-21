@@ -4,7 +4,8 @@ namespace InventoryManagement.ConsoleMenu.Menus;
 
 public class StartMenu : Menu
 {
-    public StartMenu() : base(new MenuItem(GetItems())
+    public StartMenu() 
+        : base(new MenuItem(GetItems())
     {
         NameEnum = TextEnum.MenuTitleMain,
         MaxColumns = 1

@@ -4,37 +4,74 @@ namespace InventoryManagement.ConsoleMenu;
 
 public class MenuItem
 {
-    public MenuItem Parent { get; private set; }
+    public MenuItem Parent
+    {
+        get; 
+        private set;
+    }
 
-    private string Name { get; }
-    
-    public TextEnum? NameEnum { get; set; }
+    private string Name
+    {
+        get;
+    }
 
-    public Action? Action { get; }
+    public TextEnum? NameEnum
+    {
+        get; 
+        set;
+    }
 
-    public IReadOnlyList<MenuItem> Items { get; }
+    public Action? Action
+    {
+        get;
+    }
 
-    public object Tag { get; set; }
+    public IReadOnlyList<MenuItem> Items
+    {
+        get;
+    }
 
-    public bool ActionOnSelected { get; set; } = false;
+    public object Tag
+    {
+        get; 
+        set;
+    }
 
-    public bool ActionIfConfirmed { get; set; } = false;
+    public bool ActionOnSelected
+    {
+        get; 
+        set;
+    } = false;
 
-    public int MaxColumns { get; set; }
+    public bool ActionIfConfirmed
+    {
+        get; 
+        set;
+    } = false;
 
-    public MenuItem(MenuItem[] items, int maxColumns = 0) : this("", items, maxColumns)
+    public int MaxColumns
+    {
+        get; 
+        set;
+    }
+
+    public MenuItem(MenuItem[] items, int maxColumns = 0)
+        : this("", items, maxColumns)
     {
     }
     
-    public MenuItem(Action? action, int maxColumns = 0) : this("", action, maxColumns)
+    public MenuItem(Action? action, int maxColumns = 0) 
+        : this("", action, maxColumns)
     {
     }
     
-    public MenuItem(string name, Action? action, int maxColumns = 0) : this(name, action, Array.Empty<MenuItem>(), maxColumns)
+    public MenuItem(string name, Action? action, int maxColumns = 0) 
+        : this(name, action, Array.Empty<MenuItem>(), maxColumns)
     {
     }
 
-    public MenuItem(string name, MenuItem[] items, int maxColumns = 0) : this(name, null, items, maxColumns)
+    public MenuItem(string name, MenuItem[] items, int maxColumns = 0) 
+        : this(name, null, items, maxColumns)
     {
     }
 

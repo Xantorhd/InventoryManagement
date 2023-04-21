@@ -15,9 +15,16 @@ public class Menu
     
     private MenuItem _selected;
 
-    public MenuItem Main { get; }
+    public MenuItem Main
+    {
+        get;
+    }
 
-    private string ConfirmText { get; set; } = "Are you sure? [Y/N]";
+    private string ConfirmText
+    {
+        get; 
+        set;
+    } = "Are you sure? [Y/N]";
 
     public MenuItem Selected
     {
@@ -34,17 +41,25 @@ public class Menu
         }
     }
 
-    private MenuItem Current { get; set; }
+    private MenuItem Current
+    {
+        get; 
+        set;
+    }
 
     public List<MenuItem> Items;
 
-    private List<string> Log { get; } = new ();
+    private List<string> Log
+    {
+        get;
+    } = new ();
 
     public Menu(): this("", Array.Empty<MenuItem>())
     {
     }
 
-    public Menu(MenuItem[] items): this("", items)
+    public Menu(MenuItem[] items)
+        : this("", items)
     {
     }
 

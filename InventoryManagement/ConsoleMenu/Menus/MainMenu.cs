@@ -31,7 +31,7 @@ public class MainMenu : Menu
             {
                 NameEnum = TextEnum.MenuTitleInventory
             },
-            new MenuItem(DrawUserItems)
+            new MenuItem(AddUserItems)
             {
                 NameEnum = TextEnum.MenuTitleUsers
             },
@@ -46,7 +46,7 @@ public class MainMenu : Menu
         };
     }
 
-    private static void DrawUserItems()
+    private static void AddUserItems()
     {
         if (MenuManager.GetMenu().Selected.Items.Count > 0)
         {

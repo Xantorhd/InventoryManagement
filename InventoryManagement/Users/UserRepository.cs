@@ -21,9 +21,18 @@ public class UserRepository : IUserRepository
         try
         {
             var users = GetUsers();
-            var updatedUsers = users.Where(u => u.Username != user.Username).Select(u => $"{user.Username},{user.Password}");
+
+            var newUsers = new List<string>();
+
+            foreach (var oldUser in users)
+            {
+                if (oldUser.Username != user.Username)
+                {
+                    newUsers.Add($"{oldUser.Username},{oldUser.Password}");
+                }
+            }
             
-            File.WriteAllLines(_filePath, updatedUsers);
+            File.WriteAllLines(_filePath, newUsers);
         }
         catch
         {

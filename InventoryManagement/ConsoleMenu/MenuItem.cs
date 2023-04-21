@@ -4,15 +4,22 @@ namespace InventoryManagement.ConsoleMenu;
 
 public class MenuItem
 {
+    public object? BackgroundData
+    {
+        get;
+        set;
+    }
+    
     public MenuItem Parent
     {
         get; 
         private set;
     }
 
-    private string Name
+    public string Name
     {
         get;
+        set;
     }
 
     public TextEnum? NameEnum
@@ -26,9 +33,10 @@ public class MenuItem
         get;
     }
 
-    public IReadOnlyList<MenuItem> Items
+    public List<MenuItem> Items
     {
         get;
+        set;
     }
 
     public object Tag

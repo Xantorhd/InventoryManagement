@@ -20,13 +20,16 @@ public static class LocalizationManager
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleLogin, "Anmeldung");
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleLanguages, "Sprachen");
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleInventory, "Inventar");
-            Localization.AddLocalization(de.Code, TextEnum.MenuTitleUsers, "Benutzer");
+            Localization.AddLocalization(de.Code, TextEnum.MenuTitleUsers, "Nutzer");
             Localization.AddLocalization(de.Code, TextEnum.MenuTitleHelp, "Hilfe");
             
             Localization.AddLocalization(de.Code, TextEnum.OptionShowInventoryItems, "Inventar anzeigen");
             Localization.AddLocalization(de.Code, TextEnum.OptionCreateInventoryItem, "Item hinzufügen");
             
-            Localization.AddLocalization(de.Code, TextEnum.PromtPassword, "Passwort");
+            Localization.AddLocalization(de.Code, TextEnum.PromptPassword, "Passwort");
+            Localization.AddLocalization(de.Code, TextEnum.PromptNewUser, "[Neuer Nutzer]");
+            Localization.AddLocalization(de.Code, TextEnum.PromptNewUserName, "Nutzername");
+            
             
             Localization.AddLocalization(de.Code, TextEnum.ItemName, "Name");
             Localization.AddLocalization(de.Code, TextEnum.ItemQuantity, "Menge");
@@ -53,7 +56,9 @@ public static class LocalizationManager
             Localization.AddLocalization(en.Code, TextEnum.OptionShowInventoryItems, "Show inventory");
             Localization.AddLocalization(en.Code, TextEnum.OptionCreateInventoryItem, "Add item");
             
-            Localization.AddLocalization(en.Code, TextEnum.PromtPassword, "Password");
+            Localization.AddLocalization(en.Code, TextEnum.PromptPassword, "Password");
+            Localization.AddLocalization(en.Code, TextEnum.PromptNewUser, "[New user]");
+            Localization.AddLocalization(en.Code, TextEnum.PromptNewUserName, "Username");
             
             Localization.AddLocalization(en.Code, TextEnum.ItemName, "Name");
             Localization.AddLocalization(en.Code, TextEnum.ItemQuantity, "Quantity");

@@ -96,6 +96,26 @@ public class Menu
         }
     }
 
+    public void GoUp()
+    {
+            if (Current.Parent != null)
+            {
+                foreach (var itm in Current.Parent.Items)
+                {
+                    if (itm != Current)
+                    {
+                        continue;
+                    }
+
+                    Selected = itm;
+
+                    break;
+                }
+
+                Current = Current.Parent;
+            }
+    }
+
     // Worker cycle
     public void Begin()
     {

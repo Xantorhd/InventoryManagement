@@ -14,6 +14,10 @@ public class User
         set;
     }
 
+    public User(string username) : this(username, "placeholder")
+    {
+    }
+    
     public User(string username, string password)
     {
         Username = username;

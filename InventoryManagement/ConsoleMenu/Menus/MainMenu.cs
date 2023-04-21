@@ -1,5 +1,6 @@
 using InventoryManagement.Inventory;
 using InventoryManagement.Localization;
+using InventoryManagement.Users;
 
 namespace InventoryManagement.ConsoleMenu.Menus;
 
@@ -30,7 +31,7 @@ public class MainMenu : Menu
             {
                 NameEnum = TextEnum.MenuTitleInventory
             },
-            new MenuItem(GetUserItems())
+            new MenuItem(DrawUserItems)
             {
                 NameEnum = TextEnum.MenuTitleUsers
             },
@@ -45,28 +46,69 @@ public class MainMenu : Menu
         };
     }
 
-    private static MenuItem[] GetUserItems()
+    private static void DrawUserItems()
     {
-        return Program.UserManager.GetUsernames().Select(username =>
-            new MenuItem(username, new[]
+        if (MenuManager.GetMenu().Selected.Items.Count > 0)
+        {
+            return;
+        }
+
+        MenuManager.GetMenu().Selected.Add(
+            new MenuInputItem(LocalizationManager.GetText(TextEnum.PromptNewUser),
+                LocalizationManager.GetText(TextEnum.PromptNewUserName), CreateNewUser));
+
+        var users = Program.UserManager.GetUsers();
+
+        foreach (var user in users)
+        {
+            MenuManager.GetMenu().Selected.Add(new MenuItem(user.Username, new[]
             {
                 new MenuItem(DeleteUser)
                 {
-                    NameEnum = TextEnum.DeleteUser
+                    NameEnum = TextEnum.DeleteUser,
+                    BackgroundData = user
                 }
-            })).ToArray();
+            }));
+        }
     }
 
+    private static void CreateNewUser(string value)
+    {
+        /*if (MenuManager.GetMenu().Selected.BackgroundData != null)
+        {
+            var user = (User)MenuManager.GetMenu().Selected.BackgroundData;
+
+            user.Password = value;
+
+            Program.UserManager.AddUser(user);
+            
+            MenuManager.GetMenu().GoUp();
+        }
+        else
+        {
+            MenuManager.GetMenu().WriteLine(value);
+            
+            MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.PromptNewUserPassword);
+            MenuManager.GetMenu().Selected.BackgroundData = new User(value);
+        }*/
+    }
+    
     private static void DeleteUser()
     {
+        var user = (User)MenuManager.GetMenu().Selected.BackgroundData;
+
+        Program.UserManager.RemoveUser(user);
+
+        MenuManager.GetMenu().Selected.Parent.Parent.Items.RemoveAll(itm => itm.GetName().Equals(user.Username));
         
+        MenuManager.GetMenu().GoUp();
     }
     
     private static void ShowInventoryItems()
     {
         if (MenuManager.GetMenu().Selected.Items.Count > 0)
         {
-            return;
+            MenuManager.GetMenu().Selected.Items.Clear();
         }
 
         var inventory = Program.InventoryManager.LoadInventory();

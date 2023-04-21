@@ -34,10 +34,13 @@ public class InventoryManager
         foreach (var line in lines)
         {
             var parts = line.Split(',');
+            
             var item = new Item
             {
                 Name = parts[0],
+                
                 Quantity = int.Parse(parts[1]),
+                
                 Price = int.Parse(parts[2])
             };
             

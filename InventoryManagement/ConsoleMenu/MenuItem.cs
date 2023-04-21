@@ -86,8 +86,11 @@ public class MenuItem
     public MenuItem(string name, Action? action, MenuItem[] items, int maxColumns = 0)
     {
         Name = name;
+        
         Action = action;
+        
         MaxColumns = maxColumns;
+        
         Items = new List<MenuItem>(items);
 
         foreach (var itm in items)

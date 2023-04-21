@@ -7,7 +7,9 @@ public class FakeItem : Item
     public FakeItem(string name, int quantity, int price)
     {
         Name = name;
+        
         Quantity = quantity;
+        
         Price = price;
     }
 

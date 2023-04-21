@@ -10,6 +10,7 @@ public class MainMenu : Menu
     public MainMenu() : base(new MenuItem(GetItems())
     {
         NameEnum = TextEnum.MenuTitleMain,
+        
         MaxColumns = 1
     })
     { }
@@ -95,8 +96,10 @@ public class MainMenu : Menu
         else
         {
             MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.PromptPassword);
+            
             ((MenuInputItem)MenuManager.GetMenu().Selected).Title =
                 LocalizationManager.GetText(TextEnum.PromptPassword);
+            
             MenuManager.GetMenu().Selected.BackgroundData = new User(value);
 
             MenuManager.GetMenu().Selected.Parent.Items
@@ -197,8 +200,10 @@ public class MainMenu : Menu
             MenuManager.GetMenu().Selected.BackgroundData = itemBuilder;
 
             MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.ItemQuantity);
+            
             ((MenuInputItem)MenuManager.GetMenu().Selected).Title =
                 LocalizationManager.GetText(TextEnum.ItemQuantity);
+            
             MenuManager.GetMenu().Selected.NameEnum = null;
 
             MenuManager.GetMenu().Selected.Parent.Items
@@ -219,6 +224,7 @@ public class MainMenu : Menu
             MenuManager.GetMenu().Selected.BackgroundData = itemBuilder;
             
             MenuManager.GetMenu().Selected.Name = LocalizationManager.GetText(TextEnum.ItemPrice);
+            
             ((MenuInputItem)MenuManager.GetMenu().Selected).Title =
                 LocalizationManager.GetText(TextEnum.ItemPrice);
             

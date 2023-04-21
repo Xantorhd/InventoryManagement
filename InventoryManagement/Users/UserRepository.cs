@@ -45,11 +45,13 @@ public class UserRepository : IUserRepository
     public List<User> GetUsers()
     {
         var users = new List<User>();
+        
         var lines = File.ReadAllLines(_filePath);
         
         foreach (var line in lines)
         {
             var parts = line.Split(',');
+            
             var user = new User(parts[0], parts[1]);
             
             users.Add(user);

@@ -21,6 +21,7 @@ public class User
     public User(string username, string password)
     {
         Username = username;
+        
         Password = password;
     }
 }

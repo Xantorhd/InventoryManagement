@@ -66,6 +66,7 @@ public class Menu
     public Menu(string title, MenuItem[] items)
     {
         Main = new MenuItem(title, items);
+        
         Items = new List<MenuItem>(items);
 
         Current = Main;
@@ -168,6 +169,7 @@ public class Menu
                     if (Selected.Items.Count > 0)
                     {
                         Current = Selected;
+                        
                         Selected = Current.Items[0];
                     }
 
@@ -248,6 +250,7 @@ public class Menu
                 case ConsoleKey.Delete:
                 {
                     Log.Clear();
+                    
                     break;
                 }
                 default:
@@ -307,8 +310,11 @@ public class Menu
             var inp = Selected as MenuInputItem;
 
             Console.BackgroundColor = ConsoleColor.Black;
+            
             Console.ForegroundColor = ConsoleColor.Green;
+            
             Console.Clear();
+            
             Console.Write(inp.Title + ": ");
             
             Console.ResetColor();
@@ -326,12 +332,19 @@ public class Menu
         if (_confirmMode)
         {
             Console.BackgroundColor = ConsoleColor.Gray;
+            
             Console.ForegroundColor = ConsoleColor.DarkRed;
+            
             Console.Clear();
+            
             Console.WriteLine();
+            
             Console.WriteLine();
+            
             Console.WriteLine(Selected.GetName().PadLeft(40));
+            
             Console.WriteLine();
+            
             Console.WriteLine(ConfirmText.PadLeft(40));
 
             Console.ResetColor();
@@ -343,7 +356,9 @@ public class Menu
 
         // Drawing nav
         var nav = Current.GetName();
+        
         var cur = Current.Parent;
+        
         var cursor = 0;
 
         while (cur != null)
@@ -354,6 +369,7 @@ public class Menu
         }
 
         Console.WriteLine(nav);
+        
         Console.WriteLine();
         
         var maxWidth = -1; 
@@ -369,6 +385,7 @@ public class Menu
         }
 
         const int colSpace = 5;
+        
         var len = System.Console.WindowWidth / (maxWidth + colSpace) - 1;
 
         if (Current.MaxColumns > 0 && Current.MaxColumns < len)
@@ -387,6 +404,7 @@ public class Menu
                 if (itm == Selected)
                 {
                     Console.BackgroundColor = ConsoleColor.Gray;
+                    
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
 
@@ -415,6 +433,7 @@ public class Menu
         }
 
         Console.CursorTop = cursor + 1;
+        
         Console.CursorLeft = 0;
 
         if (Log.Count <= 0)
@@ -423,7 +442,9 @@ public class Menu
         }
         
         var sb = new StringBuilder();
+        
         sb.AppendLine("______________________________");
+        
         sb.AppendLine("");
         
         foreach (var itm in Log)
@@ -442,6 +463,7 @@ public class Menu
     public void WriteLine(string str)
     {
         Log.Add(str);
+        
         Refresh();
     }
     
@@ -463,8 +485,11 @@ public class Menu
         Log.Clear();
         
         WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow1));
+        
         WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow2));
+        
         WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow3));
+        
         WriteLine(LocalizationManager.GetText(TextEnum.PrintHelpRow4));
     }
 }

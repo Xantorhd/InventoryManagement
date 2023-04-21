@@ -2,7 +2,7 @@ namespace InventoryManagement.Inventory;
 
 public class Inventory
 {
-    private List<Item> _items;
+    private readonly List<Item> _items;
 
     public Inventory()
     {
@@ -16,7 +16,7 @@ public class Inventory
 
     public void RemoveItem(Item item)
     {
-        _items.Remove(item);
+        _items.RemoveAll(itm => itm.Name == item.Name);
     }
 
     public void UpdateItem(Item item)

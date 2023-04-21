@@ -41,6 +41,7 @@ public static class LocalizationManager
             Localization.AddLocalization(de.Code, TextEnum.PrintHelpRow3, "Backspace um zum übergeordneten Menü zurückzukehren.");
             Localization.AddLocalization(de.Code, TextEnum.PrintHelpRow4, "Del um den Log zu leeren.");
             Localization.AddLocalization(de.Code, TextEnum.DeleteUser, "Nutzer löschen");
+            Localization.AddLocalization(de.Code, TextEnum.DeleteItem, "Item löschen");
             
             Localization.AddLocalization(de.Code, TextEnum.ErrorInvalidPassword, "Ungültiges Passwort");
 
@@ -70,6 +71,7 @@ public static class LocalizationManager
             Localization.AddLocalization(en.Code, TextEnum.PrintHelpRow3, "Press Backspace for return to parent menu.");
             Localization.AddLocalization(en.Code, TextEnum.PrintHelpRow4, "Press Del for clear log.");
             Localization.AddLocalization(en.Code, TextEnum.DeleteUser, "Delete user");
+            Localization.AddLocalization(en.Code, TextEnum.DeleteItem, "Delete item");
             
             Localization.AddLocalization(en.Code, TextEnum.ErrorInvalidPassword, "Invalid password");
             

@@ -133,13 +133,39 @@ public class MainMenu : Menu
         {
             return new MenuItem(item.Name, new[]
             {
-                new MenuItem(LocalizationManager.GetText(TextEnum.ItemName) + ": " + item.Name, EditItemName),
-                new MenuItem(LocalizationManager.GetText(TextEnum.ItemQuantity) + ": " + item.Quantity, EditItemQuantity),
-                new MenuItem(LocalizationManager.GetText(TextEnum.ItemPrice) + ": " + item.Price, EditItemPrice)
+                new MenuItem(DeleteItem)
+                {
+                    NameEnum = TextEnum.DeleteItem,
+                    BackgroundData = item
+                },
+                new MenuItem(LocalizationManager.GetText(TextEnum.ItemName) 
+                             + ": " 
+                             + item.Name, EditItemName),
+                new MenuItem(LocalizationManager.GetText(TextEnum.ItemQuantity) 
+                             + ": " 
+                             + item.Quantity, EditItemQuantity),
+                new MenuItem(LocalizationManager.GetText(TextEnum.ItemPrice) 
+                             + ": " 
+                             + item.Price, EditItemPrice)
             });
         }
     }
 
+    private static void DeleteItem()
+    {
+        var item = (Item)MenuManager.GetMenu().Selected.BackgroundData;
+
+        var inventory = Program.InventoryManager.LoadInventory();
+        
+        inventory.RemoveItem(item);
+        
+        Program.InventoryManager.SaveInventory(inventory);
+
+        MenuManager.GetMenu().Selected.Parent.Parent.Items.RemoveAll(itm => itm.GetName().Equals(item.Name));
+        
+        MenuManager.GetMenu().GoUp();
+    }
+    
     private static void ShowCreateItem()
     {
         

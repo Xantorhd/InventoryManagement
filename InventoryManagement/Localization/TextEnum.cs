@@ -26,6 +26,7 @@ public enum TextEnum
     PrintHelpRow3,
     PrintHelpRow4,
     DeleteUser,
+    DeleteItem,
 
     ErrorInvalidPassword
 }
